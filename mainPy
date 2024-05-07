@@ -1,7 +1,7 @@
 # Program will tell the customer their move in day payment cost and their montly cost whether or not they have their own insurance.
 moveInPrice = 0
 while True:
-    unit_price = input("Cube Standard Rate: ")
+    unit_price = int(input("Cube Standard Rate: "))
     promos = input("""Enter Promos: 
                    0 = No Promos
                    1 = First Month Free
@@ -10,16 +10,37 @@ while True:
                    4 = 40% Off
                    5 = Half Off First Month 
                    : """)
-    if promos == ("1"):
+    if promos == ("0"):
+        pass
+    elif promos == ("1"):
         moveInPrice += lock
     elif promos == ("2"):
         endMsg = "your second month will be free."
     elif promos == ("3"):
-        unit_price = unit_price - (unit_price * .25)
-        print(unit_price)
+        moveInPrice = unit_price - (unit_price * .25)
+    elif promos == ("4"):
+        unit_pr = unit_price - (unit_price * .40)
+    elif promos == ("5"):
+        moveInPrice = unit_price / 2
+    else:
+        print("Choose one of the available options, 1 - 5")
+
     
         
     
-    insurance = input("Do they have homeowners insurance? Y or N: ")
-    lock = input("Are they purchasing a lock? Y or N: ")
+    insurance = input("Do they have homeowners insurance? Y or N: ").lower()
+    if insurance == ("y"):
+        insuranceType = int(input("Enter the level of insurance they're purchasing - 1 2 3: "))
+        if insuranceType == (1):
+            moveInPrice += (12)
+        elif insuranceType == (2):
+            moveInPrice += (17)
+        elif insuranceType == (3):
+            moveInPrice += (27)
+        else:
+            print("Choose Level 1, 2 or 3: ")
+    else:
+        print('Enter Y or N')
 
+
+    lock = input("Are they purchasing a lock? Y or N: ")
